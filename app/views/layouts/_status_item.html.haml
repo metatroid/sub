@@ -1,0 +1,17 @@
+%li
+	- if current_user?(status_item.user)
+		.delete_post
+			= link_to 'x', "/posts/#{status_item.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false"
+	.post_avatar
+		- if @user.current_avatar.nil?
+			= image_tag '/avatars/thumb/missing.png'
+		- else
+			= image_tag @user.current_avatar.photo.url(:thumb)
+	.post_text
+		.user_name
+			= link_to status_item.user.display_name ||= status_item.user.name, "/user/#{status_item.user.id}/profile"
+		.post_content
+			= status_item.content
+		%span.time_stamp
+			= time_ago_in_words(status_item.created_at)
+			ago

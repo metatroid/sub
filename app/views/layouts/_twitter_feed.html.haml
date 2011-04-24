@@ -1,0 +1,10 @@
+- if @tweet
+	%ul.tweets
+		- @tweet.first(6).each do |tweet|
+			%li
+				.twitterFeedAvatar
+					= image_tag"#{tweet.user[:profile_image_url]}"
+				.twitterFeedContent
+					= tweet.user[:screen_name]
+					%br
+					= tweet.text

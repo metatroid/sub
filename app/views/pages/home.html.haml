@@ -1,0 +1,75 @@
+.container
+	.row
+		.twelvecol
+			.strip
+				.strip_title
+					An Antisocial Network
+				- if signed_in?
+					.strip-user{:class => 'user'}
+						&nbsp;
+				- else
+					.strip-user{:class => 'no-user'}
+						%ul.icons
+							%li.google
+								%a{:href => '/auth/google'}
+									&nbsp;
+							%li.yahoo
+								%a{:href => '/auth/yahoo'}
+									&nbsp;
+							%li.twitter
+								%a{:href => '/auth/twitter'}
+									&nbsp;
+							%li.facebook
+								%a{:href => '/auth/facebook'}
+									&nbsp;
+						.sign_in
+							Sign In &#8674;
+				.strip_sub
+					Upload Files, Infringe Copyrights, Aquire Internet Fame
+	.row{:class => 'description'}
+		.home_top
+			.home_heading
+				%h1.title
+					What is this?
+				.welcome
+					Welcome to Antisocial:~ because human contact is scary._
+		.home_main
+			.sevencol
+				%section.section
+					%span
+						Antisocial 
+					allows you to upload audio and video files and share them with your social media networks.
+				%section.section
+					%span
+						How does it work?
+					A combination of magic and science.  Click one of those icons above to start uploading and sharing.
+				%section.section
+					%span
+						What else does it do?
+					We offer media hosting and encoding services allowing you to upload and stream audio and video from our servers. We convert <span class='small'>almost</span> any file type to HTML5 and Flash formats for full cross-browser support.
+			.fivecol{:class => 'last'}
+				.example
+					.examplearrow
+						%img{:src => '/images/point.png', :alt => 'See an Example!'}
+					.audio_example_show
+						.audio_example_title
+							Exempli Gratia:
+						.audio_example_container
+							%audio{:class => 'player'}
+								%source{:src => "/system/audios/14/wav/01xe13.wav"}/
+								%source{:src => "/system/audios/14/original/01xe13.mp3"}/
+								.audio_example_embed-flash
+									<object type="application/x-shockwave-flash" data="/media/audio.swf" id="audioplayer1" height="24" width="290">
+									<param name="movie" value="/media/audio.swf">
+									<param name="FlashVars" value="playerID=audioplayer1&amp;soundFile=/system/audios/14/original/01xe13.mp3">
+									<param name="quality" value="high">
+									<param name="menu" value="false">
+									<param name="wmode" value="transparent">
+									</object>
+		.invaders_bottom
+			&nbsp;
+%br
+
+%br
+%br
+

@@ -1,0 +1,6 @@
+	$('.inboxNotification').html('<%= escape_javascript(render 'layouts/pm_count') %>');
+	$('.twitter_feed').html('<%= escape_javascript(render 'layouts/twitter_feed') %>');
+	$('.fb_container').html('<%= escape_javascript(render 'layouts/facebook') %>');
+	<% unless current_user.current_avatar.nil? %>
+		$('.av_display').html('<%= escape_javascript(image_tag current_user.current_avatar.photo.url(:display)) %>');	
+	<% end %>

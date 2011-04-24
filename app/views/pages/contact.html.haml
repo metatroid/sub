@@ -1,0 +1,31 @@
+.container
+	.row
+		.twelvecol
+			%h1.contacttitle
+				Correspond
+			.contactpage
+				.contact
+					%h3
+						Email
+						= image_tag('/images/email.gif', :height => 16)
+					- form_tag('/email', :id => 'emailForm') do
+						= label :email, :name, "name"
+						= text_field :email, :name
+						%br
+						%br
+						= label :email, :address, "address"
+						= text_field :email, :address, :class => 'required email'
+						%br
+						%br
+						= label :email, :subject, "subject"
+						= text_field :email, :subject
+						%br
+						%br
+						= label :email, :body, "body"
+						= text_area :email, :body
+						%br
+						%br
+						= submit_tag '', :id => 'email'
+	%br
+	%br
+	%br

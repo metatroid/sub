@@ -1,0 +1,4 @@
+%ul.post_listing
+	- unless @status_items.empty?
+		= render :partial => 'layouts/status_item', :collection => @status_items
+	= will_paginate @status_items

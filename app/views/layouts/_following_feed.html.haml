@@ -1,0 +1,20 @@
+%ul.post_listing
+	- @user.following.each do |f|
+		- f.posts.each do |p|
+			%li
+				- if current_user?(p.user)
+					.delete_post
+						= link_to 'x', "/posts/#{p.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false"
+				.post_avatar
+					- if f.current_avatar.nil?
+						= image_tag '/avatars/thumb/missing.png'
+					- else
+						= image_tag p.user.current_avatar.photo.url(:thumb)
+				.post_text
+					.user_name
+						= link_to p.user.display_name ||= p.user.name, "/user/#{p.user.id}/profile"
+					.post_content
+						= p.content
+					%span.time_stamp
+						= time_ago_in_words(p.created_at)
+						ago

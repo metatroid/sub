@@ -1,0 +1,23 @@
+.container
+	.row
+		.twelvecol
+			%h1.news
+				News
+		.twelvecol
+			.newspage
+				.news
+					- @articles.each do |a|
+						%section
+							= a.content
+							%br
+							.timestamps
+								= time_ago_in_words(a.created_at)
+								ago
+						
+- if current_user && current_user.admin?
+	.row
+		.twelvecol
+			- form_for(@article, :remote => true) do |f|
+				= f.text_area :content
+				%br
+				= f.submit

@@ -1,0 +1,99 @@
+.container
+	.row
+		.twelvecol
+			.settings
+				%h1= link_to @user.name, "/user/#{@user.id}/profile"
+				%span.display
+					= "(#{@user.display_name})" unless @user.display_name.nil?
+				.clear
+				#subsettings
+					%ul.settings_select
+						%li
+							%a{:href => '#subsettings-1'}
+								Settings
+						%li
+							%a{:href => '#subsettings-2'}
+								Display
+					#subsettings-1
+						.user_settings
+							.display_name
+								= form_for(@user) do |f|
+									%fieldset
+										%legend
+											Display name
+										-if @user.errors.any?
+											#errorExplanation
+												%ul
+													- @user.errors.full_messages.each do |msg|
+														%li= msg
+										= f.text_field :display_name
+										= f.submit 'Change'
+									
+							.login_methods
+								- if @providers.length != 4
+									%fieldset
+										%legend
+											Associate another service
+										%ul.providers
+											- unless @providers.include?('google')
+												%li.google2
+													%a{:href => '#', :onclick => "login('/auth/google', 600, 400);"}
+														&nbsp;
+											- unless @providers.include?('yahoo')
+												%li.yahoo2
+													%a{:href => '#', :onclick => "login('/auth/yahoo', 600, 400);"}
+														&nbsp;
+											- unless @providers.include?('twitter')
+												%li.twitter2
+													%a{:href => '#', :onclick => "login('/auth/twitter', 600, 400);"}
+														&nbsp;
+											- unless @providers.include?('facebook')
+												%li.facebook2
+													%a{:href => '#', :onclick => "login('/auth/facebook', 600, 400);"}
+														&nbsp;
+							.avatar_form
+								%fieldset
+									%legend
+										Select avatar
+									.current_avatar
+										.av_display
+											= image_tag @user.current_avatar.photo.url(:display) unless @user.current_avatar.nil?
+									.drop_avatar
+										.av-upload
+											Drop Image Here
+									.select_avatar
+										- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+											= i.hidden_field :user_id, "value" => @user.id
+											= i.file_field :photo
+											-#= i.submit 'set Avatar'
+										.allowedfiles
+											Allowed file types: .png, .gif, .jpg 
+					#subsettings-2
+						.display_settings
+							%fieldset
+								%legend
+									Background
+								.background_select
+									- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+										= i.hidden_field :user_id, "value" => @user.id
+										= i.file_field :image
+								.background_desc
+									Upload a new background image or choose one from your <span class='open_files'>uploaded files</span>
+							- form_tag layouts_path do
+								= hidden_field_tag :background
+								%fieldset
+									%legend
+										Containers
+									.container_select
+										= hidden_field_tag :divs
+									.container_desc
+										Select a background color
+								%fieldset
+									%legend
+										Font
+									.font_select
+										= hidden_field_tag :fonts
+									.font_desc
+										Choose your font color
+								= submit_tag "Alter Display"
+								= link_to 'Reset', reset_layouts_path, :onclick => "$.ajax({ url: $(this).attr('href'), type: 'POST', success: window.location.reload(true)}); return false", :title => 'Reset Layout'

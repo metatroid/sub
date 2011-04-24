@@ -1,0 +1,15 @@
+%li
+	- if current_user?(feed_item.user)
+		.delete_post
+			= link_to 'x', "/posts/#{feed_item.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false"
+	.post_avatar
+		= image_tag feed_item.user.current_avatar.photo.url(:thumb) unless feed_item.user.current_avatar.nil?
+	.post_text
+		.user_name
+			= link_to feed_item.user.display_name ||= feed_item.user.name, "/user/#{feed_item.user.id}/profile"
+		.post_content
+			= feed_item.content
+		%span.time_stamp
+			= time_ago_in_words(feed_item.created_at)
+			ago
+	

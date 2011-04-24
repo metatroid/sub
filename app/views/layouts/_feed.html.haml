@@ -1,0 +1,4 @@
+- unless @feed_items.empty?
+	%ul.post_listing
+		= render :partial => 'layouts/feed_item', :collection => @feed_items
+	= will_paginate @feed_items

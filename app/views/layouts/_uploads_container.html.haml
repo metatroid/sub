@@ -1,0 +1,143 @@
+.upload_container
+	.uploaded_images
+		%h3
+			Images
+		%ul
+			- if @images
+				- @images.each do |i|
+					%li
+						= link_to(image_tag(i.image.url(:thumb)), i.image.url, :class => 'uploaded_item')
+						= link_to 'delete', "/uploads/#{i.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false", :title => 'delete', :class => 'delete_image'
+						.clear
+						.share_image
+							[share]
+				.clear
+				- if @images.empty?
+					%li.empty
+						No Image Files
+	.clear
+	.share_box
+		.share_form
+			- form_tag do
+				= label :image_label, "Add a description"
+				%br
+				= text_area_tag :share_text
+				= hidden_field_tag :share_url
+				.share_links
+					%span.share_facebook
+						%a{:onclick => 'share_image_fb()', :class => 'image_share', :href => '#void'}
+							Send to facebook
+					%br
+					%span.share_twitter
+						%a{:onclick => 'share_image_tw()', :class => 'image_share', :href => '#void'}
+							Send to twitter
+.clear
+.upload_container
+	.uploaded_audio
+		%h3
+			Audio
+		%ul
+			- if @audios
+				- @audios.each do |a|
+					%li
+						.audio_link
+							= link_to("#{a.audio_file_name}", a.audio.url, :class => 'uploaded_item')
+							= link_to 'delete', "/uploads/#{a.id}", :class => 'delete_audio', :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false", :title => 'delete'
+							%span.audio_download= link_to("Download", "http://metatroid.com/x/#{a.id.to_s(32)}")
+							%span.listen
+								= link_to "Listen", "http://metatroid.com/q/#{a.id.to_s(32)}"
+							%span.listen_full{:style => 'display: none'}
+								= link_to 'null', a.display
+							%span.share_audio
+								[share]
+						.audio_embed-html5
+							%audio{:controls => 'controls'}
+								%source{:src => "#{a.audio.url}"}
+								%source{:src => "#{a.audio.url(:wav)}"}
+								%source{:src => "#{a.audio.url(:mp3)}"}
+						.audio_embed-flash
+							<object type="application/x-shockwave-flash" data="/media/audio.swf" id="audioplayer1" height="24" width="290">
+							<param name="movie" value="/media/audio.swf">
+							<param name="FlashVars" value="playerID=audioplayer1&soundFile=#{a.audio.url(:mp3)}">
+							<param name="quality" value="high">
+							<param name="menu" value="false">
+							<param name="wmode" value="transparent">
+							</object>
+				- if @audios.empty?
+					%li
+						No Audio Files
+	.clear
+	.share_box
+		.share_form
+			- form_tag do
+				= label :audio_label, "Add a description"
+				%br
+				= text_area_tag :share_text_audio
+				= hidden_field_tag :share_url_audio
+				.share_links
+					%span.share_facebook
+						%a{:onclick => 'share_audio_fb()', :class => 'audio_share', :href => '#void'}
+							Send to facebook
+					%br
+					%span.share_twitter
+						%a{:onclick => 'share_audio_tw()', :class => 'audio_share', :href => '#void'}
+							Send to twitter
+.clear
+.upload_container
+	.uploaded_video
+		%h3
+			Video
+		%ul
+			- if @videos
+				- @videos.each do |v|
+					%li
+						.video_link
+							= link_to(v.video_file_name, v.video.url, :class => 'uploaded_item')
+							= link_to 'delete', "/uploads/#{v.id}", :class => 'delete_video', :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false", :title => 'delete'
+							%span.video_download= link_to("Download", "http://metatroid.com/x/#{v.id.to_s(32)}")
+							%span.watch
+								= link_to "Watch", "http://metatroid.com/q/#{v.id.to_s(32)}"
+							%span.watch_full{:style => 'display: none'}
+								= link_to 'null', v.display
+							%span.share_video
+								[share]
+						.video_embed
+							<video src="#{v.video.url(:mp4).split('.')[0]+'.mp4'}" controls>
+							<div id="#{v.video_file_name}"></div>
+							</video>
+							<script type='text/javascript'>var so = new SWFObject('/media/video.swf','mpl','470','320','9');so.addParam('allowfullscreen','true');so.addParam('allowscriptaccess','always');so.addParam('wmode','opaque');so.addVariable('file',"#{v.video.url(:flv).split('.')[0]+'.flv'}");so.addVariable('autostart','false');so.write("#{v.video_file_name}");</script>
+				- if @videos.empty?
+					%li
+						No Video Files
+	.clear
+	.share_box
+		.share_form
+			- form_tag do
+				= label :video_label, "Add a description"
+				%br
+				= text_area_tag :share_text_video
+				= hidden_field_tag :share_url_video
+				.share_links
+					%span.share_facebook
+						%a{:onclick => 'share_video_fb()', :class => 'video_share', :href => '#void'}
+							Send to facebook
+					%br
+					%span.share_twitter
+						%a{:onclick => 'share_video_tw()', :class => 'video_share', :href => '#void'}
+							Send to twitter
+	.clear
+	.upload_container
+		.uploaded_archives
+			%h3
+				Archives
+			%ul
+				- if @archives
+					- @archives.each do |r|
+						%li
+							= link_to(r.archive_file_name, r.archive.url)
+							= link_to 'x', "/uploads/#{r.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false", :title => 'delete', :class => 'delete_archive'
+					.clear
+					- if @archives.empty?
+						%li
+							No Archive Files
+	.clear

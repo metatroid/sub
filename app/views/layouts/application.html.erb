@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class='no-js'>
+<head>
+  <meta charset="UTF-8" />
+	<title><%= title %></title>
+  <!--[if lte IE 9]>
+	<%= stylesheet_link_tag 'ie' %>
+	<![endif]-->
+  <%= stylesheet_link_tag '1140', 'style' %>
+	<%= stylesheet_link_tag 'smallerscreen', :media => 'only screen and (max-width: 1023px)' %>
+	<%= stylesheet_link_tag 'mobile', :media => 'handheld, only screen and (max-width: 767px)' %>
+	<%= javascript_include_tag 'jquery.min', 'audioplayer', 'rails', 'jquery.cookie', 'preload', 'modernizr-1.6.min', 'script', 'initial_provider', 'validate' %>
+	<!--[if lt IE 7]>
+	<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js">IE7_PNG_SUFFIX=".png";</script>
+	<![endif]-->
+<% if controller.controller_name == 'users' || controller.controller_name == 'uploads' %>
+		<%= javascript_include_tag 'uploadify/swfobject', 'uploadify/jquery.uploadify.v2.1.4.min.js', 'swfobject', 'jquery-ui' %>
+		<%= stylesheet_link_tag 'ui' %>
+		<%= render :partial => 'layouts/upload' %>
+<% end %>
+  <%= csrf_meta_tag %>
+	
+
+<% if controller.controller_name == 'users' && controller.action_name == "show" %>
+<script type='text/javascript'>
+	function process_tweet(){
+		$.post('/account/twpost', { twitter_post: $('#twitter_post').val() }, function(){
+		$('#twitter_post').val('');
+		$('.twittersuccess').html('Message posted');
+		
+		});
+	}
+	
+	function process_fb(){
+		$.post('/account/fbpost', { fb_post: $('#fb_post').val() }, function(){
+		$('#fb_post').val('');
+		$('.fbsuccess').html('Message posted');
+		
+		});
+	}
+
+
+</script>
+<% end %>
+<% if controller.action_name == "edit" && controller.controller_name == 'users' %>
+	<%= stylesheet_link_tag 'jPicker-1.1.6' %>
+	<%= javascript_include_tag 'jpicker-1.1.6' %>
+	<script>
+		$(function(){
+			$('#subsettings').tabs();
+			$.fn.jPicker.defaults.images.clientPath='/stylesheets/colorpicker/images/';
+
+			$('#divs').jPicker({
+																window: {	expandable: true,
+																					title: 'Select a container background color',
+																					position: {	x: 'screenCenter',
+																											y: 'bottom'
+																										}
+																				},
+																images: {	picker: {
+																										file: '/images/0-0.png',
+																										width: 50,
+																										height: 49
+																									}
+																				}
+			});
+			$('#fonts').jPicker({
+																window: {	expandable: true,
+																					title: 'Select a font color',
+																					position: {	x: 'screenCenter',
+																											y: 'bottom'
+																										}
+																				},
+																images: {	picker: {
+																										file: '/images/0-0.png',
+																										width: 50,
+																										height: 49
+																									}
+																				}
+			});
+		});
+	</script>
+<% end %>
+<% if controller.action_name == "contact" %>
+<script>
+  $(document).ready(function(){
+    $("#emailForm").validate();
+  });
+</script>
+<% end %>
+<% if current_user && controller.action_name != 'profile'%>
+	<% unless current_user.background.nil? || current_user.background.blank? %>
+		<style type'text/css'>
+			body{
+				background: url(<%= current_user.background %>) !important;
+			}
+		</style>
+	<% end %>
+	<% unless current_user.fonts.nil? || current_user.fonts.blank? %>
+		<style type'text/css'>
+			body{
+				color: #<%= current_user.fonts %> !important;
+			}
+			a, div, span, h1, h2, h3 {
+				color: #<%= current_user.fonts %> !important;
+			}
+			fieldset{
+				border: 1px solid #<%= current_user.fonts %> !important;
+			}
+			nav ul li, nav ul li a, .site_messages, .site_messages a {
+				color: #a7a7a7 !important
+			}
+			li.messagerow:nth-child(odd), li.messagerow:nth-child(odd) a{
+				color: #0a0a0a !important;
+			}
+			li.messagerow:nth-child(even), li.messagerow:nth-child(even) a{
+				color #d7d7d7 !important;
+			}
+		</style>
+	<% end %>
+	<% unless current_user.divs.nil? || current_user.divs.blank? %>
+		<style type'text/css'>
+			.userstrip, ul.usersettings li, .posting, .twitter_profile, .facebook_profile{
+				background: url(<%= current_user.divs %>) !important;
+			}
+			.userstats, .fb_container{
+				background: url(<%= current_user.divs.sub("#{current_user.id}-div", "#{current_user.id}-lighter_div") %>) !important;
+			}
+			.settings, .twitter_feed ul li, ul.fbposts li, ul.post_listing li, .uploaded_files ul{
+				background: url(<%= current_user.divs.sub("#{current_user.id}-div", "#{current_user.id}-darker_div") %>) !important;
+			}
+			
+		</style>
+	
+	<% end %>
+<% end %>
+<% if controller.action_name == 'profile'%>
+	<%= render :partial => 'layouts/user_layout' %>
+<% end %>
+</head>
+<body>
+<div class='site_messages'></div>
+<div id='wrapper'>
+<header>
+	<div class='container'>
+		<div class='row'>
+			<div class='twelvecol'>
+				<nav class='topnav'>
+				<ul>
+					<li><%= link_to "Home", root_path %></li>
+					<li><%= link_to "Help", help_path %></li>
+					<% if signed_in? %>
+					<li><%= link_to('Users', user_list_path) %></li>
+					<li class='accountTop'><%= link_to current_user.display_name ||= current_user.name, account_path, :class => 'accountLink' %> 
+						<ul class='accountDrop'>
+							<li><%= link_to "Settings", account_settings_path, :class => 'accountLink' %></li>
+							<li><%= link_to "Inbox", inbox_path, :class => 'inboxLink' %></li>
+							<li><%= link_to "Uploads", uploads_path, :class => 'uploadLink' %></li>
+						</ul>
+					</li>
+					<li class='inboxNotification'><%= render 'layouts/pm_count' %></li>
+					<li><%= link_to "Sign out", logout_path %> </li>
+					<% end %>
+				</ul></nav>
+			</div>
+		</div>
+	</div>
+</header>
+<div class='flash'><%= flash[:notice] %></div>
+<div class='clear'></div>
+<div id='main' class='clearfix'>
+				<%= yield %>
+</div></div>
+<div class='bottom'><footer>
+			<nav class='bottomnav'>
+				<ul>
+					<li><%= link_to "About", about_path %></li>
+					<li><%= link_to "Contact", contact_path %></li>
+					<li><%= link_to "News", news_path %></li>
+					<li><%= link_to "Metatroid", 'http://metatroid.com' %></li>
+				</ul>
+			</nav>
+</footer></div>
+<% if controller.controller_name == "users" %>
+	<script type="text/javascript">
+	if ($.browser.msie) {  } else {
+		if(window.opener) {
+			window.opener.location.reload(true);
+			window.close()
+		}
+	}
+	</script>
+<% end %>
+<script>
+   var _gaq = [['_setAccount', 'UA-19470005-3'], ['_trackPageview']];
+   (function(d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.async = true;
+    g.src = '//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g, s);
+   })(document, 'script');
+ </script>
+</body>
+</html>

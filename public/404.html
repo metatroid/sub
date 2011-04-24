@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>404 - Very ERROR</title>
+  <style type="text/css">
+    body { background-color: #0102ac; color: #f4fef6; text-align: center; font-family: fixedsys, monospace; }
+    div.container{
+			padding: 200px 0 0 0;
+		}
+		div.top{
+			padding: 0 5px;
+			background: #b1adaa;
+			color: #0102ac;
+			width: 80px;
+			margin: 0 auto
+		}
+		div.dialog, div.list {
+     width: 560px;
+		 margin: 0 auto;
+		 text-align: left;
+    }
+		div.list a{
+			color: white;
+		}
+		div.bottom{
+			width: 300px;
+			margin: auto;
+		}
+    div.bottom span{
+			text-decoration: blink;
+		}
+  </style>
+	<script type='text/javascript' src='/javascripts/jquery.min.js'></script>
+	<script>
+	$(document).click(function(){
+		history.go(-1);
+	});
+	
+	$(document).keypress(function(){
+		history.go(-1);
+	});
+	</script>
+	
+</head>
+
+<body>
+<div class='container'>
+<div class='top'>Metatroid</div><br>
+<div class='dialog'>A fatal exception 404 has occurred at metatroid.com in XEQ QY0(00) /+<br>0101000.  The current page cannot be found.</div><br>
+<div class='list'><span>* &nbsp;</span> Press any key/click anywhere to go back.</div>
+<div class='list'><span>* &nbsp;</span> Click on this <a href='/'>link</a> to return to the home page.</div><br>
+<div class='bottom'>Press any key to continue <span>_</span></div>
+</div>
+</body>
+</html>

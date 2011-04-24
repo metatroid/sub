@@ -1,0 +1,39 @@
+<% unless current_user.current_avatar.nil? && current_user.uploads.last.photo_file_name.nil? %>
+	$('.av_display').html("<%= escape_javascript(image_tag current_user.current_avatar.photo.url(:display)) %>");
+	if(window.location.href.indexOf('settings') == -1){
+		$('.av-upload').hide();
+		$('.avselect').hide();
+		$('.avatar_form').hide();
+		$('.avatar p').hide();
+	}
+<% end %>
+
+<% unless current_user.uploads.last.video_file_name.nil?%>
+	$('.upload_links').show()
+	if($('.uploaded_files').length > 0){
+		$('.uploaded_files').html("<%= escape_javascript(render :partial => 'layouts/uploads_container') %>");
+	}
+	$('input.directLink').val("http://metatroid.com/x/"+"<%= escape_javascript(current_user.uploads.last.id.to_s(32)) %>");
+	$('input.displayLink').val("http://metatroid.com/q/"+"<%= escape_javascript(current_user.uploads.last.id.to_s(32)) %>");
+<% end %>
+
+<% unless current_user.uploads.last.audio_file_name.nil?%>
+	if($('.uploaded_files').length > 0){
+		$('.uploaded_files').html("<%= escape_javascript(render :partial => 'layouts/uploads_container') %>");
+	}
+	$('.upload_links').show()
+	$('input.directLink').val("http://metatroid.com/x/"+"<%= escape_javascript(current_user.uploads.last.id.to_s(32)) %>");
+	$('input.displayLink').val("http://metatroid.com/q/"+"<%= escape_javascript(current_user.uploads.last.id.to_s(32)) %>");
+<% end %>
+
+<% unless current_user.uploads.last.image_file_name.nil?%>
+	if($('.uploaded_files').length > 0){
+		$('.uploaded_files').html("<%= escape_javascript(render :partial => 'layouts/uploads_container') %>");
+	}
+	$('.upload_links').show()
+	$('input.directLink').val("http://metatroid.com/x/"+"<%= escape_javascript(current_user.uploads.last.id.to_s(32)) %>");
+	$('.display_link').hide();
+	if($('input#background').length > 0){
+		$('input#background').val("<%= escape_javascript(current_user.uploads.last.image.url) %>");
+	}
+<% end %>

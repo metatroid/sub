@@ -1,0 +1,26 @@
+- unless @upload_audio.empty?
+	.file_display
+		%h1
+			= @upload_audio[0].audio_file_name
+		.audio_embed-html5_display
+			%audio{:controls => 'controls'}
+				%source{:src => "#{@upload_audio[0].audio.url}"}
+				%source{:src => "#{@upload_audio[0].audio.url(:wav)}"}
+				%source{:src => "#{@upload_audio[0].audio.url(:mp3)}"}
+		.audio_embed-flash_display
+			<object type="application/x-shockwave-flash" data="/media/audio.swf" id="audioplayer1" height="24" width="290">
+			<param name="movie" value="/media/audio.swf">
+			<param name="FlashVars" value="playerID=audioplayer1&soundFile=#{@upload_audio[0].audio.url(:mp3)}">
+			<param name="quality" value="high">
+			<param name="menu" value="false">
+			<param name="wmode" value="transparent">
+			</object>
+- unless @upload_video.empty?
+	.file_display
+		%h1
+			= @upload_video[0].video_file_name
+		.video_embed_display
+			<video src="#{@upload_video[0].video.url(:mp4).split('.')[0]+'.mp4'}" controls>
+			<div id="#{@upload_video[0].video_file_name}"></div>
+			</video>
+			<script type='text/javascript'>var so = new SWFObject('/media/video.swf','mpl','470','320','9');so.addParam('allowfullscreen','true');so.addParam('allowscriptaccess','always');so.addParam('wmode','opaque');so.addVariable('file',"#{@upload_video[0].video.url(:flv).split('.')[0]+'.flv'}");so.addVariable('autostart','false');so.write("#{@upload_video[0].video_file_name}");</script>

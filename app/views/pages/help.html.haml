@@ -1,0 +1,35 @@
+.container
+	.row{:class => 'halp'}
+		.twelvecol
+			%h1.help
+				OH GOD WHAT IS THIS
+		.sixcol
+			.qTitle
+				Can't figure out how to do something? Pose a question and await answers.
+			.questionform	
+				- form_for(@question, :remote => true) do |f|
+					= f.text_area :query
+					= f.submit ''
+		.sixcol{:class => 'last'}
+			%ul.questions
+				- @questions.each do |q|
+					%li
+						Q:
+						= q.query
+						- if q.query.split('').last != '?'
+							?
+						.answer
+							\-
+							%br
+							- if q.answer
+								A:
+								= q.answer.reply ||= 'This question has not been answered yet'
+							- else
+								This question has not been answered yet
+							- if current_user && current_user.admin?
+								.answerform
+									- form_for(@answer, :remote => true) do |a|
+										= a.text_area :reply
+										= a.hidden_field :question_id, :value => q.id
+										= a.submit 
+	%br

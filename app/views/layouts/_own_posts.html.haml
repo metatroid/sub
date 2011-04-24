@@ -1,0 +1,9 @@
+= will_paginate @posts unless @posts.empty?
+%ul
+	-if @posts
+		- @posts.each do |post|
+			%li
+				= post.content
+				%span{:class => 'timestamp'}
+					= time_ago_in_words(post.created_at)
+					ago

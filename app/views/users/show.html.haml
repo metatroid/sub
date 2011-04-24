@@ -1,0 +1,169 @@
+.container{:class => 'profile'}
+	.row		
+		.twelvecol{:class => 'userstrip'}
+			.avatar
+				- if current_user.current_avatar.nil?
+					.av-upload
+						Drop Image Here
+					&nbsp;
+					%p.avselect
+						Or
+					.avatar_form
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :photo
+							-#= i.submit 'set Avatar'
+					%p
+						To set an avatar
+				.av_display
+					= image_tag(current_user.current_avatar.photo.url(:display), :alt => '') unless current_user.current_avatar.nil?
+					&nbsp;
+			.userinfo
+				.userstats
+					%h1= link_to @user.display_name ||= @user.name, "/user/#{@user.id}/profile"
+					= @user.email unless @user.email.nil?
+					%br
+					Posts: 
+					= @user.posts.count
+					%br
+					Stalkers:
+					= @user.followers.count
+					%br
+					Stalkees:
+					= @user.following.count
+					%br
+					Unread messages:
+					= @user.unread.count
+					%br
+					.messages
+						= flash[:message]
+					%br
+				.usersettings
+					%ul.usersettings
+						%li
+							= link_to 'Settings', account_settings_path
+						%li
+							= link_to 'Messages', inbox_path
+						%li
+							= link_to 'Profile', "/user/#{@user.id}/profile"
+						%li
+							= link_to 'Uploads', uploads_path
+			.user_uploads
+				.initiate_attach
+					Upload a File
+				.clear
+				.post_attachment
+					.form_select
+						= check_box_tag(:is_image, 1, true,  :onclick => 'attachment_image_checkbox()')
+						Is image?
+						= check_box_tag(:is_audio, 1, false, :onclick => 'attachment_audio_checkbox()')
+						Is audio?
+						= check_box_tag(:is_video, 1, false, :onclick => 'attachment_video_checkbox()')
+						Is video?
+						= check_box_tag(:is_archive, 1, false, :onclick => 'attachment_archive_checkbox()')
+						Is archive?
+					.form_image
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :image
+							-#= i.submit ''
+					.form_audio
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :audio
+							-#= i.submit ''
+					.form_video
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :video
+							-#= i.submit ''
+					.form_archive
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :archive
+							-#= i.submit ''
+					.allowedfiles
+						Allowed file types: .png, .jpg, .gif
+					.upload_links
+						.direct_link
+							.dl
+								Direct Download:
+							%input{:type => 'text', :class => 'directLink', :value => ''}
+						.display_link
+							.ds
+								Display Link:
+							%input{:type => 'text', :class => 'displayLink', :value => ''}
+			.clear
+	.row{:class => 'posting'}
+		.eightcol
+			.post_feed
+				= render 'layouts/status'
+			&nbsp;
+		.fourcol{:class => 'last'}
+			%span.precounter
+				0-000 00
+			%span.counter
+			= flash[:error]
+			- form_for(@post, :remote => true, :id => 'post_form') do |f|
+				= f.text_area :content, :class => 'post_textarea'
+				%br
+				= f.submit ''
+	%br
+	.row{:class => 'twitter_profile'}	
+		- unless current_user.authorizations.find(:all, :conditions => { :provider => 'twitter' }).blank?	
+			.twittersection
+				%h1
+					Twitter
+				.twocol
+					.twitterTitle
+						%h3= link_to @twitter_name, "http://twitter.com/#{@twitter_name}", :target => '_blank'
+						= image_tag @twitter_image unless @twitter_image.nil? || @twitter_image.blank?
+				.eightcol
+					.post_to_twitter
+						- form_tag account_twpost_path do
+							= text_area_tag :twitter_post
+							%a{:onclick => 'process_tweet()', :class => 'tweet', :href => '#void'}
+								&nbsp;
+							%br
+							%span.twittercount
+							.twittersuccess
+					.twitter_feed
+						= render 'layouts/twitter_feed'
+				.twocol{:class => 'last twitter_others'}
+					%h5
+						Your Twitter friends
+					%ul.twitter_friends
+						- @friends.each do |t|
+							%li
+								= link_to t.screen_name, "http://twitter.com/#!/#{t.screen_name}", :target => '_blank'
+					%h5
+						Your Twitter followers
+					%ul.twitter_followers
+						- @followers.each do |t|
+							%li
+								= link_to t.screen_name, "http://twitter.com/#!/#{t.screen_name}", :target => '_blank'
+	%br
+	.row{:class => 'facebook_profile'}
+		- unless current_user.authorizations.find(:all, :conditions => { :provider => 'facebook' }).blank?
+			.facebooksection
+				%h1
+					Facebook
+				.twocol
+					.facebookTitle
+						%h3= link_to @fbname, @fblink
+						= image_tag @fbimage unless @fbimage.nil? || @fbimage.blank?
+				.sixcol
+					.post_to_facebook
+						- form_tag account_fbpost_path do
+							= text_area_tag :fb_post
+							%br
+							%a{:onclick => 'process_fb()', :class => 'fbpost', :href => '#void'}
+								&nbsp;
+							.fbsuccess
+					.fb_container
+						= render 'layouts/facebook'
+				.fourcol{:class => 'last'}	
+					.fb_inbox
+						%h3
+							Inbox
+						= render 'layouts/facebook_inbox'

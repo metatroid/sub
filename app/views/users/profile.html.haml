@@ -1,0 +1,72 @@
+
+.container
+	.row{:class => 'profile_page'}
+		.sixcol
+			%h1.profiletitle
+				= @user.display_name ||= @user.name
+			- if current_user.admin?
+				= link_to 'Delete', "/user/#{@user.id}/delete", :onclick => 'return confirm("delete user?")'
+			- unless @user.id == current_user.id
+				.fbutton
+					= render 'layouts/follow' unless current_user.following?(@user)
+					= render 'layouts/unfollow' if current_user.following?(@user)
+				.clear
+			- else
+				.clear
+			- unless @user.posts.empty? || @user.posts.nil?
+				%ul.post_listing
+					- @posts.each do |post|
+						%li
+							- if current_user?(post.user)
+								.delete_post
+									= link_to 'x', "/posts/#{post.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false"
+							.post_avatar
+								- if post.user.current_avatar.nil?
+									= image_tag '/avatars/thumb/missing.png'
+								- else
+									= image_tag post.user.current_avatar.photo.url(:thumb)
+							.post_text
+								.user_name
+									= link_to post.user.display_name ||= post.user.name, "/user/#{post.user.id}/profile"
+								.post_content
+									= post.content
+								%span.time_stamp
+									= time_ago_in_words(post.created_at)
+									ago
+				= will_paginate @posts
+		.sixcol{:class => 'last pmsection'}
+			- unless @user.authorizations.find(:all, :conditions => { :provider => 'twitter' }).blank?
+				%h3
+					Twitter Info
+				.profile_twitter
+					= link_to(image_tag(@twitter_image_small), "http://twitter.com/#{@twitter_name}", :target => '_blank')
+					= link_to @twitter_name, "http://twitter.com/#{@twitter_name}", :target => '_blank'
+					%br
+					= @tweet
+			-	unless @user.authorizations.find(:all, :conditions => { :provider => 'facebook' }).blank?
+				%h3
+					Facebook Info
+				.profile_facebook
+					= link_to(image_tag(@fbimage), @fblink, :target => '_blank')
+					= link_to @fbname, @fblink, :target => '_blank'
+					%br
+					= @fbstatus
+			%h3
+				Private Messaging
+			.pmbody
+				%span
+					Send
+					= @user.display_name ||= @user.name
+					a private message
+				.pmForm
+					- form_for(@message, :remote => true) do |m|
+						= m.label :subject
+						%br
+						= m.text_field :subject
+						%br
+						= m.label :content
+						%br
+						= m.text_area :content
+						%br
+						= m.hidden_field :recipient, :value => @user.id.to_i
+						= m.submit ''

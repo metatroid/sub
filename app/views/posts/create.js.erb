@@ -1,0 +1,19 @@
+<% if @post.errors.any? %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('<%= escape_javascript(error_messages_for(@post))%>');
+	$('.site_messages #errorExplanation h2').html('ERROR');
+	$('.site_messages #errorExplanation p').hide();
+	$('.site_messages #errorExplanation ul').append('<li class="close_message">Click anywhere to dismiss</li>');
+	$('.site_messages').slideDown(300);
+<% else %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('HUGE SUCCESS!');
+	$('.site_messages').slideDown(300);
+	$('.post_textarea').val('');
+	<% if @post.user.current_avatar.nil? %>
+		$('.post_feed ul').prepend('<li><div class="delete_post"><%= escape_javascript(link_to 'x', "/posts/#{@post.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false") %>	</div><div class="post_avatar"> <%= escape_javascript(image_tag '/avatars/thumb/missing.png') %> </div><div class="post_text"><div class="user_name"> <%= escape_javascript(link_to @post.user.display_name ||= @post.user.name, "/user/#{@post.user.id}/profile") %> </div><div class="post_content"> <%= escape_javascript(@post.content) %> </div><span class="time_stamp"> <%= escape_javascript(time_ago_in_words(@post.created_at)) %> ago </span></div></li>');
+	<% else	%>
+		$('.post_feed ul').prepend('<li><div class="delete_post"><%= escape_javascript(link_to 'x', "/posts/#{@post.id}", :onclick => "$.ajax({ url: $(this).attr('href'), type: 'DELETE', success: $(this).parents('li').hide()}); return false") %>	</div><div class="post_avatar"> <%= escape_javascript(image_tag @post.user.current_avatar.photo.url(:thumb)) %> </div><div class="post_text"><div class="user_name"> <%= escape_javascript(link_to @post.user.display_name ||= @post.user.name, "/user/#{@post.user.id}/profile") %> </div><div class="post_content"> <%= escape_javascript(@post.content) %> </div><span class="time_stamp"> <%= escape_javascript(time_ago_in_words(@post.created_at)) %> ago </span></div></li>');
+	<% end %>
+	$('.site_messages').delay(5000).fadeOut(300);
+<% end %>

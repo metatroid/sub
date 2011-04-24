@@ -1,0 +1,25 @@
+%ul.fbposts
+	- if @fbposts
+		- @fbposts.each do |post| 
+			%li
+				%a{:href => "http://www.facebook.com/profile.php?id=#{post['from'].id}", :target => '_blank'}= image_tag "https://graph.facebook.com/#{post.id.split('_')[0]}/picture"
+				.fbpostcontent
+					%a{:href => "http://www.facebook.com/profile.php?id=#{post['from'].id}", :target => '_blank'}= post['from'].name
+					%br
+					- if post['type'] == 'status'
+						= post['message'] unless post['message'].nil? || post['message'].blank?
+						%br
+						= post.caption
+						- if post.properties
+							- if post.properties.is_a? Array
+								= link_to post.properties[0].href, post.properties[0].href, :target => '_blank' unless post.properties[0].href.nil?
+					- if post['type'] == 'link'
+						= post['message']
+						%br
+						= link_to(post.name, post['link'], :target => '_blank') unless post['link'].nil?
+					- if post['type'] == 'photo'
+						= post.message unless nil?
+						%br
+						= link_to image_tag(post.picture), post.picture.gsub(/_s/, '_n'), :target => '_blank' if post.picture
+					- if post['type'] == 'video'
+						= link_to post.name, post.source, :target => '_blank'

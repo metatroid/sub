@@ -1,0 +1,15 @@
+<% if @user.errors.any? %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('<%= escape_javascript(error_messages_for(@user))%>');
+	$('.site_messages #errorExplanation h2').html('ERROR');
+	$('.site_messages #errorExplanation p').hide();
+	$('.site_messages #errorExplanation ul').append('<li class="close_message">Click anywhere to dismiss</li>');
+	$('.site_messages').slideDown(300);
+<% else %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('Now following <%= escape_javascript(@user.display_name ||= @user.name) %>');
+	$('.site_messages').slideDown(300);
+	$('.fbutton').html('<%= escape_javascript(render 'layouts/unfollow') %>');
+	$('.site_messages').delay(2000).fadeOut(300);
+<% end %>
+

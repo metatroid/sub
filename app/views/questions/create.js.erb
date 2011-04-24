@@ -1,0 +1,15 @@
+<% if @question.errors.any? %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('<%= escape_javascript(error_messages_for(@post))%>');
+	$('.site_messages #errorExplanation h2').html('ERROR');
+	$('.site_messages #errorExplanation p').hide();
+	$('.site_messages #errorExplanation ul').append('<li class="close_message">Click anywhere to dismiss</li>');
+	$('.site_messages').slideDown(300);
+<% else %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('question submitted!');
+	$('.site_messages').slideDown(300);
+	$('#question_query').val('');
+	$('ul.questions').prepend('<li> <%= escape_javascript(@question.query) %> </li>');
+	$('.site_messages').delay(5000).fadeOut(300);
+<% end %>

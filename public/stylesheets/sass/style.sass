@@ -1,0 +1,984 @@
+@font-face
+	font-family: Hardpixel
+	src: url(/stylesheets/Hardpixel.OTF)
+html
+	height: 100%
+body
+	background: #888 url(/images/bg.png)
+	font-family: helvetica, arial, sans-serif
+	font-size: 13px
+	color: #d7d7d7
+h1, h1 a, h3, h3 a, h2, h2 a
+	font-family: Hardpixel
+h1, h1 a
+	font-size: 45px
+	line-height: 50px
+h3, h3 a
+	font-size: 26px
+	line-height: 30px
+	padding: 0 5px
+a
+	color: white
+	text-decoration: none
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif
+ul
+	list-style: none
+header
+	height: 25px
+	display: block
+	background: #0a0a0a url(/images/cross.jpg)
+	box-shadow: 0 0 15px 5px #000
+	-webkit-box-shadow: 0 0 15px 5px #000
+	-moz-box-shadow: 0 0 15px 5px #000
+	margin-bottom: 20px
+	a
+		color: #aaa
+		text-shadow: 0 2px 3px #000
+		font-size: 13px
+.no-rgba nav.topnav>ul li:hover
+	background: transparent url(/images/0-40.png)
+	a
+		color: #d7d7d7
+nav.topnav>ul
+	float: right
+	li:hover
+		background: rgba(0, 0, 0, 0.4)
+		a
+			color: #d7d7d7
+.fuckingOpera .topnav>ul>li
+	width: 65px !important
+nav.topnav>ul>li
+	float: left
+	padding: 8px 20px 0 20px
+	min-width: 50px
+	min-height: 20px
+	text-align: right
+ul.accountDrop
+	display: none
+	float: none
+	height: auto
+	padding: 0 0 10px 0
+	width: 100%
+	li
+		display: block
+		padding: 3px 5px 0 0
+		text-align: right
+		a
+			font-size: 10px
+.no-rgba li.accountTop:hover ul.accountDrop
+	visibility: visible
+	float: none
+	display: block
+	
+	color: white
+li.accountTop:hover ul.accountDrop
+	visibility: visible
+	float: none
+	display: block
+	
+	color: white
+li.inboxNotification:hover
+	background: transparent !important
+li.inboxNotification
+	min-width: 0 !important
+	width: 22px !important
+	padding: 57px 0 0 0 !important
+	text-align: center !important
+.flash
+	float: right
+	padding: 0 5px
+	color: #444
+	position: relative
+	bottom: 45px
+.strip
+	height: 108px
+	color: #444
+	position: relative
+	margin-bottom: 20px
+.strip-user.user
+	background: url(/images/auser.png)
+	height: 100px
+	position: absolute
+	bottom: -20px
+	right: 50px
+	width: 200px
+.strip-user.no-user
+.strip_sub
+	padding: 0 0 0 50px
+	color: #aaa
+	font-size: 12px
+	font-family: lucida console, courier new, monospace, georgia
+	text-shadow: -1px 2px 2px #000
+.sign_in
+	font-family: Hardpixel
+	font-size: 32px
+	color: #222
+	text-shadow: 0 2px 3px #555
+	float: right
+	width: 165px
+.strip_title
+	font-family: Hardpixel
+	font-size: 48px
+	line-height: 48px
+	color: #222
+	margin-bottom: 20px
+	text-shadow: 0 2px 3px #555
+ul.icons
+	float: right
+ul.icons li
+	float: left
+	width: 32px
+	height: 32px
+	margin: 0 20px
+	cursor: pointer
+	border-radius: 0 0 15px 15px
+	-webkit-border-radius: 0 0 15px 15px
+	-moz-border-radius: 0 0 15px 15px
+	border-bottom: 1px solid #222
+	box-shadow: 0 10px 5px -5px #000
+	-moz-box-shadow: 0 10px 5px -5px #000
+	-webkit-box-shadow: 0 10px 5px -5px #000
+ul.providers li
+	float: left
+	width: 32px
+	height: 32px
+	margin: 0 40px 0 0
+	cursor: pointer
+ul.icons li a, ul.providers li a
+	display: block
+li.google a, li.google2 a
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) 0 -34px no-repeat
+li.yahoo a, li.yahoo2 a
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) -34px -34px no-repeat
+li.twitter a, li.twitter2 a
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) -68px -35px no-repeat
+li.facebook a, li.facebook2 a
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) -102px -34px no-repeat
+li.google a:hover, li.google2 a:hover
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) 0 0 no-repeat
+li.yahoo a:hover, li.yahoo2 a:hover
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) -34px 0 no-repeat
+li.twitter a:hover, li.twitter2 a:hover
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) -68px -1px no-repeat
+li.facebook a:hover, li.facebook2 a:hover
+	width: 32px
+	height: 32px
+	background: url(/images/login_icons.png) -102px 0 no-repeat
+.strip-right
+	width: 66.666%
+.no-rgba footer
+	display: block
+	position: relative
+	background: url(/images/mariobackground.png) center bottom no-repeat
+	height: 300px
+	text-align: center
+footer
+	display: block
+	position: relative
+	background: rgba(20, 20, 20, 0.7) url(/images/mariobackground.png) center bottom no-repeat
+	height: 300px
+	text-align: center
+nav.bottomnav ul 
+	background: black
+	li
+		display: inline-block
+		display: -moz-inline-stack
+		zoom: 1
+		*display: inline
+		padding: 0 35px
+
+		
+.profile
+	color: white
+	h1, h1 a, h3, h3 a
+		color: #aaa
+		text-shadow: 0 2px 3px #000
+		padding: 0 0 0 10px
+.facebook ul li 
+	padding: 10px 0
+.no-rgba .fb_container
+	background: transparent url(/images/11-60.png)
+.fb_container
+	background: rgba(11, 11, 11, 0.6)
+	padding: 10px 30px
+.multiplebgs .userstrip
+	margin-bottom: 10px
+	background: url(/images/stripe.png)
+	padding-bottom: 10px
+.no-multiplebgs .userstrip
+	margin-bottom: 10px
+	background: url(/images/stripe.png)
+	padding-bottom: 10px
+.avatar, .userinfo
+	float: left
+.avatar
+	min-width: 120px
+.userstats
+	padding: 0 20px 0 20px
+	margin: 20px 0 0 20px
+	background: url(/images/0-40.png)
+ul.usersettings
+	margin: 15px 0 0 20px
+	padding: 0 0 0 20px
+	li
+		float: left
+		margin: 5px 20px 0 0
+		padding: 5px 12px
+		background: url(/images/0-90.png)
+		border: 1px solid #444
+		color: white
+		font-size: 11px
+.av-upload
+	color: white
+	width: 65px
+	height: 65px
+	border: 1px #444 dotted
+	font-size: 13px
+	padding: 7px
+	text-align: center
+	margin: 5px 0 0 5px
+textarea
+	height: 50px
+	overflow: auto
+.no-rgba .site_messages
+	background: #0a0a0a
+	color: white
+	text-align: center
+	font-size: 32px
+	display: none
+	position: absolute
+	top: 0
+	width: 100%
+.site_messages
+	background: rgba(0,0,0,0.6)
+	color: white
+	text-align: center
+	font-size: 32px
+	display: none
+	position: fixed
+	top: 0
+	width: 100%
+#errorExplanation h2
+	font-size: 22px
+.close_message
+	font-size: 12px
+	padding-top: 20px
+ul.post_listing
+	margin-top: 30px
+.no-rgba ul.post_listing li, .no-rgba ul.tweets li
+	background: url(/images/0-80.png)
+	margin: 10px 0 10px 0
+	height: 75px
+ul.post_listing li, ul.tweets li
+	background: rgba(0,0,0,0.8)
+	margin: 10px 0 10px 0
+	min-height: 85px
+.delete_post
+	float: right
+	background: url(/images/0-40.png)
+	padding: 0 5px
+.post_avatar, .post_text, .twitterFeedAvatar, .twitterFeedContent
+	display: -moz-inline-stack
+	display: inline-block
+	vertical-align: top
+	zoom: 1
+	*display: inline
+	position: relative
+.post_text, .twitterFeedContent
+	width: 75%
+.post_avatar img, .twitterFeedAvatar img
+	vertical-align: middle
+div.post_content
+	padding: 2px 2px
+.time_stamp
+	font-size: 11px
+	position: absolute
+	top: 70px
+.fuckingOpera .av-upload, .fuckingSafari .av-upload
+	visibility: hidden
+.facebook_profile
+	margin-bottom: 50px
+.posting
+	padding: 10px 0 10px 5px
+textarea#twitter_post
+	width: 500px
+	margin: 35px auto 10px auto
+	border: 8px solid black
+	background: transparent url(/images/210-90.png)
+	color: #000
+textarea#fb_post
+	width: 100%
+	margin: 10px auto
+	border: 8px solid black
+	background: transparent url(/images/210-90.png)
+	color: #000
+textarea#post_content
+	width: 90%
+	margin: 10px auto
+	border: 8px solid black
+	background: transparent url(/images/210-90.png)
+	color: #000
+input#post_submit, input#message_submit
+	background: white url(/images/post_button.png)
+	width: 80px
+	height: 35px
+	border: none
+span.twittercount
+	font-family: Hardpixel
+	font-size: 22px
+	color: #cbe
+	text-shadow: 0 0 1px #eef
+a.tweet
+	position: relative
+	bottom: 32px
+	background: white url(/images/post_button.png)
+	width: 80px
+	height: 35px
+	display: inline-block
+.post_to_facebook
+	position: relative
+	height: 130px
+a.fbpost
+	position: absolute
+	right: -20px
+	background: white url(/images/post_button.png)
+	width: 80px
+	height: 35px
+	display: block
+.twitter_others
+	padding-top: 100px
+	ul
+		padding: 10px 0 20px 0
+		li
+			padding: 1px 0 0 2px
+ul.fbposts li
+	padding: 2px 0
+	margin: 10px 0 10px 0
+	background: url(/images/0-60.png)
+	.fbpostcontent
+		display: -moz-inline-stack
+		display: inline-block
+		vertical-align: top
+		zoom: 1
+		*display: inline
+		position: relative
+		width: 75%
+		img
+			height: 75px
+			width: 75px
+ul.facebook_inbox li
+	margin: 10px 0 10px 0
+.fb_inbox .fbcomments
+	display: none
+	ul li
+		padding: 0 15px
+		margin: 5px 0 5px 0
+.fb_inbox
+	margin-top: 150px
+	
+h1.title
+	color: #ddd
+	padding: 10px 20px
+	float: left
+	text-shadow: -1px 2px 2px #000
+	font-weight: normal
+.welcome
+	bottom: 5px
+	color: #AAAAAA
+	font-family: lucida console, courier new, monospace, georgia
+	font-size: 10px
+	position: absolute
+	right: 10px
+	text-shadow: -1px 2px 2px black
+	display: none
+.home_top
+	border-bottom: 5px solid #000
+.no-rgba .home_heading
+	height: 75px
+	background: url(/images/diagonal.png) no-repeat scroll -75px 0
+	padding: 50px 120px 10px
+	position: relative
+.rgba .home_heading
+	background: url(/images/diagonal.png) no-repeat scroll -75px 0 rgba(0, 0, 0, 0.4)
+	height: 75px
+	padding: 50px 120px 10px
+	position: relative
+section.section
+	background: url(/images/dots.png) center top no-repeat
+	color: #AAAAAA
+	font-family: helvetica
+	font-size: 14px
+	letter-spacing: 0
+	line-height: 18px
+	margin: 50px 0 50px 0
+	padding: 25px 20px
+	text-indent: 50px
+	text-shadow: -1px 1px 1px #000000
+	span
+		font-weight: bold
+.description
+	background: #111 url(/images/stripe.png)
+	box-shadow: 0 0 5px 1px #000000
+	-moz-box-shadow: 0 0 5px 1px #000000
+	-webkit-box-shadow: 0 0 5px 1px #000000
+	position: relative
+	-moz-border-radius: 3px
+	-webkit-border-radius: 3px
+	-moz-border-radius: 3px
+	width: 85%
+.home_main
+	height: 650px
+	background: url(/images/tower.png) no-repeat right 398px
+.wat
+	padding: 10px 0
+	color: #f00
+	font-size: 24px
+	font-family: lucida console, courier new, monospace, georgia
+.science
+	font-family: lucida console, courier new, monospace, georgia
+.clear
+	clear: both
+	font-size: 1px
+.invaders_bottom
+	height: 197px
+	width: 100%
+	background: url(/images/invaders_bottom.gif)
+	position: absolute
+	bottom: 0
+
+html, body, #wrapper
+	height: 100%
+body > #wrapper
+	height: auto
+	min-height: 100%
+#main
+	padding-bottom: 300px
+.bottom
+	position: relative
+	margin-top: -300px
+	height: 300px
+	clear: both
+.clearfix:after
+	content: "."
+	display: block
+	height: 0
+	clear: both
+	visibility: hidden
+.clearfix
+	display: inline-block
+/* Hides from IE-mac \*/
+* html .clearfix
+	height: 1%
+.clearfix
+	display: block
+/* End hide from IE-mac */
+textarea#question_query
+	background: white
+	border: none
+	-moz-box-shadow: 0 0 5px black
+	-webkit-box-shadow: 0 0 5px black
+	box-shadow: 0 0 5px black
+.qTitle
+	color: #aaa
+	font-family: lucida console, courier new, monospace, georgia
+	font-size: 12px
+	text-shadow: -1px 2px 2px black
+	padding: 5px 15px
+h1.help
+	color: #222
+	text-shadow: 0 2px 3px #555
+ul.questions
+	color: white
+	li
+		padding: 10px 5px
+		margin: 10px 0
+		background:  url(/images/0-80.png)
+.halp
+input#question_submit
+	background: white url(/images/post_button.png)
+	width: 80px
+	height: 35px
+	border: none
+	position: relative
+	bottom: 25px
+	left: 10px
+div.about
+	color: #222
+	text-shadow: 0 2px 3px #555
+	font-size: 32px
+	width: 66%
+.watisthisidonteven
+	width: 88%
+	margin-bottom: 50px
+.this
+	margin-top: 80px
+	height: 500px
+	background: url(/images/0-40.png)
+	padding: 25px
+	color: black
+	width: 450px
+h1.contacttitle, h1.news
+	margin-bottom: 25px
+	color: #222
+	text-shadow: 0 2px 3px #555
+.contactpage, .newspage
+	background: url(/images/f-10.png)
+	padding: 50px 0
+	border: 8px dashed white
+	margin-bottom: 50px
+.contact
+	width: 600px
+	margin: 50px auto
+	padding: 75px
+	-moz-border-radius: 50px
+	-webkit-border-radius: 50px
+	border-radius: 50px
+	behavior: url(/PIE.htc)
+	background: url(/images/0-90.png)
+.contact textarea, .contact input
+	background: url(/images/0-60.png)
+	color: white
+	border: none
+.contact input#email
+	background: white url(/images/post_button.png)
+	width: 80px
+	height: 35px
+	border: none
+	margin-left: 50px
+.contact label
+	width: 50px
+	color: white
+	float: left
+.contact label.error
+	float: none
+	color: #f00
+.contact h3
+	color: white
+	margin-bottom: 20px
+div.news
+	color: #ddf
+	width: 80%
+	margin: 0 auto
+	padding: 40px
+div.news section
+	display: block
+	padding: 10px 40px 20px 40px
+	background: url(/images/0-90.png)
+	margin: 20px 0
+	height: 100px
+	position: relative
+	padding: 20px
+	font-size: 22px
+.timestamps
+	font-size: 10px
+	position: absolute
+	bottom: 5px
+	right: 10px
+.usercontent, .useravatar
+	display: -moz-inline-stack
+	display: inline-block
+	vertical-align: top
+	zoom: 1
+	*display: inline
+	position: relative
+.usercontent
+	width: 75%
+.usertime
+	font-size: 10px
+	padding-bottom: 20px
+li.userlist:nth-child(odd)
+	margin: 10px 0 10px 0
+	background: url(/images/0-60.png)
+li.userlist:nth-child(even)
+	margin: 10px 0 10px 0
+	background: url(/images/0-10.png)
+.userslist
+	padding: 20px
+	background: url(/images/stripe.png)
+	margin-bottom: 50px
+.userTitle
+	background: url(/images/0-80.png)
+	h1
+		color: #aaa
+		text-shadow: 0 2px 3px #000
+		padding: 0 0 0 10px
+.pmsection
+	margin-top: 50px
+input#message_subject
+	background: transparent url(/images/210-90.png)
+	border: 8px solid black
+textarea#message_content
+	margin: 10px auto
+	border: 8px solid black
+	background: transparent url(/images/210-90.png)
+	color: #000
+	height: 100px
+.pmForm
+	margin: 10px 0 20px 20px
+h1.profiletitle
+	color: #222
+	font-size: 66px
+	text-shadow: 0 2px 3px #555
+h1.profiletitle, .fbutton
+	float: left
+.fbutton
+	position: relative
+	top: 26px
+	left: 10px
+input#relationship_submit
+	background: url(/images/0-90.png)
+	border: 1px solid #444
+	color: white
+	font-size: 11px
+h1.inbox
+	color: #d7d7d7
+.body
+	display: none
+	padding: 10px 0 5px 2px
+	background: url(/images/0-90.png)
+	color: #d7d7d7
+	a
+		color: #d7d7d7 !important
+.open
+	padding: 10px 0 5px 2px
+	background: url(/images/0-90.png)
+	color: #d7d7d7
+	a
+		color: #d7d7d7 !important
+li.heading
+	background: url(/images/0-90.png)
+	width: 100%
+	height: 15px
+	padding: 0 0 0 2px
+	border-bottom: 1px solid black
+.from, .subject, .date
+	float: left
+.from
+	width: 15%
+.date
+	width: 20%
+.subject
+	width: 65%
+li.messagerow
+	width: 100%
+	height: 13px
+	padding: 3px 0 3px 2px
+	clear: both
+li.messagerow:nth-child(odd)
+	background: url(/images/f-60.png)
+	color: #0a0a0a
+	a
+		color: #0a0a0a
+li.messagerow:nth-child(even)
+	background: url(/images/0-60.png)
+	color: #d7d7d7
+	a
+		color: #d7d7d7
+.subject>span
+	cursor: pointer
+.reply_link
+	font-size: 10px
+	color: #d7d7d7 !important
+.reply
+	padding-top: 10px
+.settings
+	width: 600px
+	margin: 0 auto 50px auto
+	padding: 25px 50px
+	background: url(/images/0-90.png)
+	-moz-border-radius: 50px
+	-webkit-border-radius: 50px
+	border-radius: 50px
+	behavior: url(/PIE.htc)
+	color: #d7d7d7
+	a
+		color: #d7d7d7
+	.av-upload
+		color: #d7d7d7
+		margin: 0
+	h1
+		margin-bottom: 20px
+		float: left
+	span.display
+		position: relative
+		top: 32px
+		padding: 0 0 0 10px
+	fieldset
+		border: 1px solid #444
+		padding: 20px
+	.select_form
+		width: 125px
+.display_name
+	margin-bottom: 20px
+	input
+		border: 0
+		background: url(/images/0-60.png)
+		color: #d7d7d7
+		padding: 2px 5px
+	input#user_submit
+		border: 4px solid black
+		background: #ccc
+		color: black
+		cursor: pointer
+		font-family: Hardpixel
+.current_avatar
+	width: 30%
+	float: left
+	padding: 0 10px
+	img
+		max-width: 150px
+		float: left
+.login_methods
+	margin-bottom: 20px
+.drop_avatar
+	width: 80px
+	float: left
+	padding: 0 10px
+.select_avatar
+	width: 165px
+	float: left
+	padding: 0 10px
+.file_error
+	color: #c00
+	font-size: 10px
+	font-family: lucida console, courier new, monospace
+.allowedfiles
+	color: #444
+	font-size: 10px
+.initiate_attach
+	cursor: pointer
+	padding: 22px 0 0 0 
+	position: relative
+	left: 10px
+	font-family: lucida console, courier new, monospace, georgia
+	font-size: 10px
+	text-decoration: underline
+	margin-bottom: 15px
+	float: left
+.post_attachment
+	display: none
+	position: relative
+	left: 20px
+input#post_submit
+	float: left
+.form_audio, .form_video, .form_archive
+	display: none
+.uploaded_files
+	margin-bottom: 50px
+	ul
+		background: url(/images/0-90.png)
+		margin: 0 0 0 10px
+		padding: 5px 0
+		li
+			padding: 0 0 0 20px
+			div
+				margin: 5px 0
+				padding: 5px 0
+.audio_embed-html5, .audio_embed-flash, .video_embed
+	display: none
+.uploaded_files
+	span.audio_download, span.video_download
+		font-size: 10px
+		padding: 0 5px
+	span.listen, span.watch
+		font-size: 10px
+		padding: 0 5px
+		cursor: pointer
+		cursor: pointer
+.uploaded_images
+	ul
+		li
+			float: left
+			margin: 0 5px
+			text-align: center
+		li.empty
+			float: none
+			margin: 0 5px
+			text-align: left
+#subsettings-1, #subsettings-2
+	border: 1px solid #444
+ul.settings_select
+	li
+		background: url(/images/0-10.png)
+		border: 1px solid #444
+h2.title
+	font-family: helvetica, arial, sans-serif
+.display_settings
+	input
+		background: white
+		border: 4px solid black
+		font-family: Hardpixel
+		margin-top: 20px
+	a
+		float: right
+		margin-top: 30px
+		font-size: 10px
+.background_select, .container_select, .font_select
+	float: left
+	width: 150px
+.background_desc, .container_desc, .font_des
+	margin: 0 0 0 20px
+.open_files
+	text-decoration: underline
+	cursor: pointer
+.selected_image
+	border: 4px solid #f00
+	padding: 2px !important
+.file_confirm
+	display: none
+.profile_twitter, .profile_facebook
+	padding: 10px 20px
+	margin-bottom: 20px
+	background: url(/images/0-80.png)
+.pmbody
+	background: url(/images/0-80.png)
+.pagination, .pagination a
+	background: url(/images/0-90.png)
+	font-family: fixedsys, lucida console, courier new, monospace
+.profile_page
+	margin-bottom: 50px
+	h1, h1 a, h3, h3 a
+		color: #aaa
+		text-shadow: 0 2px 3px #000
+.users_upload_page
+	h1, h1 a, h3, h3 a, h2, h2 a
+		color: #222
+		text-shadow: 0 2px 3px #555
+		margin-bottom: 5px
+.add_file
+	.file_upload
+		padding: 20px 0
+		background: url(/images/0-80.png)
+		.post_attachment
+			display: block
+			left: 10px !important
+.no-audio .audio_embed-html5_display
+	display: none
+.audio .audio_embed-flash_display
+	display: none
+.file_display
+	width: 480px
+	margin: 50px auto
+	text-align: center
+	padding: 0 50px 50px 50px
+	background: url(/images/0-80.png)
+	h1
+		font-size: 22px
+		text-align: left
+		margin-bottom: 50px
+.delete_image
+	display: block
+	letter-spacing: 5px
+	font-size: 10px
+.share_image
+	position: relative
+	bottom: 20px
+	cursor: pointer
+.share_audio, .share_video
+	cursor: pointer
+.delete_audio, .delete_video
+	font-size: 10px
+.share_form
+	margin-left: 20px
+	color: #0a0a0a
+	a
+		color #0a0a0a
+	label
+		color: #d7d7d7
+textarea#share_text, textarea#share_text_audio, textarea#share_text_video
+	float: left
+	width: 400px
+	background: transparent
+	border: 1px solid #444
+	color: #d7d7d7
+.share_links
+	float: left
+	margin-left: 10px
+	margin-top: 5px
+	span
+		display: block
+.share_box
+	display: none
+.user_uploads
+	float: left
+.userinfo
+	width: 450px
+.upload_links
+	display: none
+	div
+		margin: 5px 0
+		input
+			border: 1px solid #d7d7d7
+			background: transparent
+			color: white
+			padding: 3px 5px
+.facebooksection, .twittersection
+	h1
+		border-bottom: 5px solid black
+		margin-bottom: 50px
+.example
+	background: rgba(255,255,255,0.03)
+	-moz-box-shadow: 0 0 15px 0 #000
+	-webkit-box-shadow: 0 0 15px 0 #000
+	box-shadow: 0 0 15px 0 #000
+	padding: 15px
+.examplearrow
+	color: #ddd
+	cursor: pointer
+	font-family: HardPixel
+	font-size: 32px
+	line-height: 32px
+	height: 80px
+	margin: 20px 0 0 
+	text-shadow: -1px 2px 2px #000
+.audio_example_show
+	.audio_example_title
+		color: #aaa
+		font-size: 14px
+		margin: 40px 0 10px 0
+		text-shadow: -1px 1px 1px #000
+	.audio_example_container
+		audio
+			background: rgba(0,0,0,0.6)
+			padding: 25px
+			width: 80%
+.simple-player-container
+	display: inline-block
+	-webkit-border-radius: 5px
+	-moz-border-radius: 5px
+	border-radius: 5px
+.simple-player-container > div > ul
+	margin: 0
+	padding-left: 0
+.simpleplayer-play-control
+	background: url(/images/controls.png) 0px 32px
+	display: block
+	width: 32px
+	height: 32px
+	bottom: 0px
+	position: relative
+.simpleplayer-play-control:hover 
+	background: url(/images/controls.png) 0px 32px
+.simpleplayer-stop-control 
+	background: url(/images/controls.png) 0px 0px
+	display: block
+	width: 32px
+	height: 32px
+	bottom: 0px
+	position: relative
+.simpleplayer-stop-control:hover 
+	background: url(/images/controls.png) 0px 0px

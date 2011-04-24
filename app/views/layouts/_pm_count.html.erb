@@ -1,0 +1,14 @@
+<% if current_user.unread.count.to_i > 0 %>
+	<%= link_to image_tag('/images/pmnote-16.png'), '/account/inbox' %>
+	
+	<script>
+		var unread = "<%= escape_javascript("(#{current_user.unread.count.to_s})") %>";
+		var original_title = "<%= escape_javascript(title) %>";
+		document.title = unread + " - " + original_title;
+	</script>
+<% else %>
+	<script>
+		var original_title = "<%= escape_javascript(title) %>";
+		document.title = original_title;
+	</script>
+<% end %>

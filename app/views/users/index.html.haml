@@ -1,0 +1,26 @@
+.containter
+	.row
+		.twelvecol
+			.userTitle
+				%h1
+					Drones
+			.userslist
+				= will_paginate
+				%ul.users
+					- @users.each do |u|
+						%li.userlist
+							.useravatar
+								- if u.current_avatar.nil?
+									= link_to(image_tag('/avatars/thumb/missing.png'), "/user/#{u.id}/profile")
+								- else
+									= link_to(image_tag(u.current_avatar.photo.url(:thumb), :alt => ''), "/user/#{u.id}/profile")
+							.usercontent
+								.username
+									= link_to(u.display_name ||= u.name, "/user/#{u.id}/profile")
+								.usertime
+									Last seen on
+									= u.updated_at.to_s(format = :long_ordinal).split.collect[0..2].join(' ')
+								.userpost
+									- if u.posts && !u.posts.empty?
+										= u.posts.first.content
+				= will_paginate

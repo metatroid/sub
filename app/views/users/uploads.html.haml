@@ -1,0 +1,54 @@
+.container{:class => "users_upload_page"}
+	.row
+		.twelvecol
+			.uploadspage
+				%h1
+					= "#{@user.display_name ||= @user.name}'s Files"
+		.eightcol
+			.uploaded_files
+				= render :partial => 'layouts/uploads_container'
+		.fourcol{:class => 'last add_file'}
+			%h2
+				Upload a file
+			.file_upload
+				.post_attachment
+					.form_select
+						= check_box_tag(:is_image, 1, true,  :onclick => 'attachment_image_checkbox()')
+						Is image?
+						= check_box_tag(:is_audio, 1, false, :onclick => 'attachment_audio_checkbox()')
+						Is audio?
+						= check_box_tag(:is_video, 1, false, :onclick => 'attachment_video_checkbox()')
+						Is video?
+						= check_box_tag(:is_archive, 1, false, :onclick => 'attachment_archive_checkbox()')
+						Is archive?
+					.form_image
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :image
+							-#= i.submit ''
+					.form_audio
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :audio
+							-#= i.submit ''
+					.form_video
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :video
+							-#= i.submit ''
+					.form_archive
+						- form_for Upload.new(:user_id => @user.id), :html => {:multipart => true} do |i|
+							= i.hidden_field :user_id, "value" => @user.id
+							= i.file_field :archive
+							-#= i.submit ''
+					.allowedfiles
+						Allowed file types: .png, .jpg, .gif
+					.upload_links
+						.direct_link
+							.dl
+								Direct Download:
+							%input{:type => 'text', :class => 'directLink', :value => ''}
+						.display_link
+							.ds
+								Display Link:
+							%input{:type => 'text', :class => 'displayLink', :value => ''}

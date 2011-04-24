@@ -1,0 +1,19 @@
+%ul.facebook_inbox
+	- if @fbinbox
+		- @fbinbox.each do |inbox|
+			%li
+				- if inbox.from
+					%span.inboxName= inbox.from.name
+					%br
+					%span.inboxSubject= link_to inbox.subject ||= "(no subject)", "http://www.facebook.com/?page=1&sk=messages&tid=#{inbox.id}", :target => '_blank'
+					\:
+					%span.inboxMessage= inbox.message
+					= link_to("#{inbox.comments['data'].count} comments", "#", :class => 'fbcommentsLink') if inbox.comments
+				.fbcomments
+					%ul
+						- if inbox.comments
+							- inbox.comments['data'].each do |comment|
+								%li
+									%span.commentName= comment.from.name
+									\:
+									%span.commentMessage= comment.message

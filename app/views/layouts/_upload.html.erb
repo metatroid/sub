@@ -1,0 +1,225 @@
+<script type='text/javascript'>
+			<%- session_key = Rails.application.config.session_options[:key] -%> 
+			$(document).ready(function() {
+
+//photos
+	
+	$('#upload_photo').click(function(event){ 
+		event.preventDefault();
+	}); 
+	
+	$('#upload_photo').uploadify({
+  	uploader : '/javascripts/uploadify/uploadify.swf',
+		cancelImg : '/javascripts/uploadify/cancel.png',
+		multi : true,
+		auto : true,
+  	script : '/uploads',
+		onSelect : function(event,queueID,fileObj){
+										var ext = fileObj.name;
+										ext = ext.substr(ext.length-4); //gets last 4 chars (extension type)
+										switch (ext) {
+											case ".png":
+											case ".gif":
+											case ".jpg":
+												// filetype ok
+												break;
+											default:
+											$('.allowedfiles').append("<div class='file_error'>Error: file type not allowed</div>");
+											$jQuery("#uploadify").uploadifyCancel(queueID);
+											break;
+										}
+								},
+		onComplete : function(event, queueID, fileObj, response, data) { 
+			var dat = eval('(' + response + ')');
+			$.getScript(dat.upload);},
+  	scriptData : {
+	        '_http_accept': 'application/javascript',
+					'format' : 'json',
+	        '_method': 'post',
+	        '_antisocial_session' : encodeURIComponent('<%= u cookies[session_key] %>'),
+	        'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>'),
+					'user_id' : '<%= current_user.id %>'
+	      }
+	});
+	
+	/*$('#upload_submit').click(function(event){ 
+			event.preventDefault(); 
+			$('#upload_photo').uploadifyUpload(); 
+		});
+		*/
+		
+//videos
+	
+	$('#upload_video').click(function(event){ 
+		event.preventDefault();
+	}); 
+	
+	$('#upload_video').uploadify({
+  	uploader : '/javascripts/uploadify/uploadify.swf',
+		cancelImg : '/javascripts/uploadify/cancel.png',
+		multi : true,
+		auto : true,
+  	script : '/uploads',
+		onSelect : function(event,queueID,fileObj){
+										var ext = fileObj.name;
+										ext = ext.substr(ext.length-4); //gets last 4 chars (extension type)
+										switch (ext) {
+											case ".flv":
+											case ".avi":
+											case ".mp4":
+											case ".mpg":
+											case ".mpeg":
+											case ".mkv":
+											case ".mov":
+												// filetype ok
+												$('.file_error').hide();
+												break;
+											default:
+												$('.allowedfiles').append("<div class='file_error'>Error: file type not allowed</div>");
+												$jQuery("#uploadify").uploadifyCancel(queueID);
+												break;
+										}
+								},
+		onComplete : function(event, queueID, fileObj, response, data) { 
+			var dat = eval('(' + response + ')');
+			$.getScript(dat.upload);},
+  	scriptData : {
+	        '_http_accept': 'application/javascript',
+					'format' : 'json',
+	        '_method': 'post',
+	        '_antisocial_session' : encodeURIComponent('<%= u cookies[session_key] %>'),
+	        'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>'),
+					'user_id' : '<%= current_user.id %>',
+					'is_video' : '1'
+	      }
+	});
+	
+//audio
+
+	$('#upload_audio').click(function(event){ 
+		event.preventDefault();
+	}); 
+	
+	$('#upload_audio').uploadify({
+  	uploader : '/javascripts/uploadify/uploadify.swf',
+		cancelImg : '/javascripts/uploadify/cancel.png',
+		multi : true,
+		auto : true,
+  	script : '/uploads',
+		onSelect : function(event,queueID,fileObj){
+										var ext = fileObj.name;
+										ext = ext.substr(ext.length-4); //gets last 4 chars (extension type)
+										switch (ext) {
+											case ".mp3":
+											case ".wav":
+											case ".ogg":
+												// filetype ok
+												$('.file_error').hide();
+												break;
+											default:
+												$('.allowedfiles').append("<div class='file_error'>Error: file type not allowed</div>");
+												$jQuery("#uploadify").uploadifyCancel(queueID);
+												break;
+										}
+								},
+		onComplete : function(event, queueID, fileObj, response, data) { 
+			var dat = eval('(' + response + ')');
+			$.getScript(dat.upload);},
+  	scriptData : {
+	        '_http_accept': 'application/javascript',
+					'format' : 'json',
+	        '_method': 'post',
+	        '_antisocial_session' : encodeURIComponent('<%= u cookies[session_key] %>'),
+	        'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>'),
+					'user_id' : '<%= current_user.id %>',
+					'is_audio' : '1'
+	      }
+	});
+	
+//image
+
+	$('#upload_image').click(function(event){ 
+		event.preventDefault();
+	}); 
+	
+	$('#upload_image').uploadify({
+  	uploader : '/javascripts/uploadify/uploadify.swf',
+		cancelImg : '/javascripts/uploadify/cancel.png',
+		multi : true,
+		auto : true,
+  	script : '/uploads',
+		onSelect : function(event,queueID,fileObj){
+										var ext = fileObj.name;
+										ext = ext.substr(ext.length-4); //gets last 4 chars (extension type)
+										switch (ext) {
+											case ".png":
+											case ".gif":
+											case ".jpg":
+												// filetype ok
+												$('.file_error').hide();
+												break;
+											default:
+												$('.allowedfiles').append("<div class='file_error'>Error: file type not allowed</div>");
+												$jQuery("#uploadify").uploadifyCancel(queueID);
+												break;
+										}
+								},
+		onComplete : function(event, queueID, fileObj, response, data) { 
+			var dat = eval('(' + response + ')');
+			$.getScript(dat.upload);},
+  	scriptData : {
+	        '_http_accept': 'application/javascript',
+					'format' : 'json',
+	        '_method': 'post',
+	        '_antisocial_session' : encodeURIComponent('<%= u cookies[session_key] %>'),
+	        'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>'),
+					'user_id' : '<%= current_user.id %>',
+					'is_image' : '1'
+	      }
+	});
+	
+//archive
+
+	$('#upload_archive').click(function(event){ 
+		event.preventDefault();
+	}); 
+	
+	$('#upload_archive').uploadify({
+  	uploader : '/javascripts/uploadify/uploadify.swf',
+		cancelImg : '/javascripts/uploadify/cancel.png',
+		multi : true,
+		auto : true,
+  	script : '/uploads',
+		onSelect : function(event,queueID,fileObj){
+										var ext = fileObj.name;
+										ext = ext.substr(ext.length-3); //gets last 4 chars (extension type)
+										switch (ext) {
+											case "rar":
+											case "zip":
+											case ".gz":
+												// filetype ok
+												$('.file_error').hide();
+												break;
+											default:
+												$('.allowedfiles').append("<div class='file_error'>Error: file type not allowed</div>");
+												$jQuery("#uploadify").uploadifyCancel(queueID);
+												break;
+										}
+								},
+		onComplete : function(event, queueID, fileObj, response, data) { 
+			var dat = eval('(' + response + ')');
+			$.getScript(dat.upload);},
+  	scriptData : {
+	        '_http_accept': 'application/javascript',
+					'format' : 'json',
+	        '_method': 'post',
+	        '_antisocial_session' : encodeURIComponent('<%= u cookies[session_key] %>'),
+	        'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>'),
+					'user_id' : '<%= current_user.id %>',
+					'is_archive' : '1'
+	      }
+	});
+	
+}); 
+
+		</script>

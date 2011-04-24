@@ -1,0 +1,15 @@
+<% if @article.errors.any? %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('<%= escape_javascript(error_messages_for(@post))%>');
+	$('.site_messages #errorExplanation h2').html('ERROR');
+	$('.site_messages #errorExplanation p').hide();
+	$('.site_messages #errorExplanation ul').append('<li class="close_message">Click anywhere to dismiss</li>');
+	$('.site_messages').slideDown(300);
+<% else %>
+	$('.site_messages').slideUp(300);
+	$('.site_messages').html('HUGE SUCCESS!');
+	$('.site_messages').slideDown(300);
+	$('textarea#article_content').val('');
+	$('div.news').prepend('<section><%= escape_javascript(@article.content) %></section>');
+	$('.site_messages').delay(5000).fadeOut(300);
+<% end %>
